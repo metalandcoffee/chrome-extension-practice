@@ -1,9 +1,5 @@
 const tmi = window.tmi;
 
-const vidMeta = document.querySelector('meta[itemprop="name"]');
-let vidTitle = vidMeta ? vidMeta.getAttribute('content') : null;
-console.log(vidTitle);
-
 const client = new tmi.Client({
 	options: { debug: true },
 	connection: {
@@ -16,6 +12,7 @@ const client = new tmi.Client({
 client.connect();
 
 client.on('message', (channel, tags, message, self) => {
-	console.log(message);
+	const vidMeta = document.querySelector('meta[itemprop="name"]');
+	console.log(vidMeta);
 })
 
