@@ -4,8 +4,6 @@
 
     var client = require('./lib/client');
 
-    console.log('😒😒');
-
     module.exports = {
       client: client,
       Client: client
@@ -1746,6 +1744,13 @@
 
         if (typeof window !== 'undefined') {
           window.tmi = {
+            client: client,
+            Client: client
+          };
+        }
+
+        if (typeof self !== 'undefined') {
+          self.tmi = {
             client: client,
             Client: client
           };
