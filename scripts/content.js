@@ -1,5 +1,5 @@
 const article = document.querySelector("article");
-
+console.log('😭😭😭');
 // `document.querySelector` may return null if the selector doesn't match anything.
 if (article) {
 	const text = article.textContent;
