@@ -1,9 +1,25 @@
 importScripts('tmi.js');
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	console.log(tab);
+var vidTitle;
 
-	if (tab.url?.includes("youtube.com") && changeInfo.status == 'complete') {
-		console.log("Hello, we're on YouTube! I can do more parsing from here!");
+const client = new self.tmi.Client({
+	options: { debug: true },
+	connection: {
+		secure: true,
+		reconnect: true
+	},
+	channels: ['metalandcoffee_']
+});
+
+client.connect();
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+	if (tab.url?.includes("youtube.com") && changeInfo?.title) {
+		console.log(changeInfo?.title);
 	}
 });
+
+client.on('message', (channel, tags, message, self) => {
+	const vidMeta = document.querySelector('meta[itemprop="name"]');
+	console.log(vidMeta);
+})
